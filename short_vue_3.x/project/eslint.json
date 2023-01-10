@@ -1,0 +1,7 @@
+{
+  "quotes": ["error", "single"],
+  "no-multi-spaces": ["error"],
+  "indent": ["warn", "tab"],
+  "eqeqeq": ["error"],
+  "react/prop-types": "off"
+}
