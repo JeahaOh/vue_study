@@ -13,6 +13,18 @@
     <br />
     <select name="" id="">
       <option
+        v-for="dong in dongList.filter(
+          (dong) => dong.cityCode === this.selectedCity
+        )"
+        :key="dong.dongCode"
+        :value="dong.dongCode"
+      >
+        {{ dong.dongTitle }}
+      </option>
+    </select>
+    <br />
+    <select name="" id="">
+      <option
         v-for="dong in selectedDongList"
         :key="dong.dongCode"
         :value="dong.dongCode"
