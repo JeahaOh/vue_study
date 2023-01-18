@@ -6,11 +6,49 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>구구단</title>
-  <script src="https://cdn.jsdeliver.net/npm/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div>{{ first }} X {{ second }} = ?</div>
+    <form v-on:submit="onSubmitForm">
+      <input type="number" ref="answer" v-model="value" />
+      <button type="submit">GO</button>
+    </form>
+    <div id="result">{{result}}</div>
+    <div>{{value}}</div>
+  </div>
 </body>
+
+<script>
+  const app = new Vue({
+    el: '#root',
+    data: {
+      first: Math.ceil(Math.random() * 9),
+      second: Math.ceil(Math.random() * 9),
+      value: '',
+      result: '',
+    },
+    methods: {
+      onSubmitForm(e) {
+        e.preventDefault();
+        console.log(this);
+        if (this.first * this.second === parseInt(this.value)) {
+          this.result = '정답'
+          setTimeout(() => {
+            this.first = Math.ceil(Math.random() * 9);
+            this.second = Math.ceil(Math.random() * 9);
+            this.value = '';
+          }, 500);
+        } else {
+          this.result = '땡'
+          this.value = '';
+        }
+        this.$refs.answer.focus();
+      }
+    }
+  })
+</script>
 
 </html>
