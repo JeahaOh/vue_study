@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='ko'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>끗말잇기</title>
+  <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+</head>
+
+<body>
+  <div id='root'>
+    <div>{{ prev }}</div>
+    <form v-on:submit="onSubmitForm">
+      <input type="text" ref="current" v-model="current" />
+      <button type="submit">GO</button>
+    </form>
+    <div>{{result}}</div>
+  </div>
+</body>
+<script>
+  const app = new Vue({
+    el: '#root',
+    data: {
+      prev: '이원굉',
+      current: '',
+      result: ''
+    },
+    methods: {
+      onSubmitForm(e) {
+        e.preventDefault();
+        if (this.prev[this.prev.length - 1] === this.current[0]) {
+          this.result = 'OK'
+          setTimeout(() => {
+            this.prev = this.current;
+            this.current = '';
+            this.$refs.current.focus();
+          }, 300);
+        } else {
+          this.result = 'NOT OK'
+          this.current = '';
+        }
+      }
+    }
+  })
+</script>
+
+</html>
