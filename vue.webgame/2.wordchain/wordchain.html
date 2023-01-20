@@ -11,21 +11,29 @@
 
 <body>
   <div id='root'>
-    <div>{{ prev }}</div>
-    <form v-on:submit="onSubmitForm">
-      <input type="text" ref="current" v-model="current" />
-      <button type="submit">GO</button>
-    </form>
-    <div>{{result}}</div>
+    <word-relay></word-relay>
+    <word-relay></word-relay>
+    <word-relay></word-relay>
   </div>
 </body>
 <script>
-  const app = new Vue({
-    el: '#root',
-    data: {
-      prev: '이원굉',
-      current: '',
-      result: ''
+  Vue.component('word-relay', {
+    template: `
+      <div>
+        <div>{{ prev }}</div>
+        <form v-on:submit="onSubmitForm">
+          <input type="text" ref="current" v-model="current" />
+          <button type="submit">GO</button>
+        </form>
+        <div>{{result}}</div>
+      </div>
+    `,
+    data() {
+      return {
+        prev: '이원굉',
+        current: '',
+        result: ''
+      }
     },
     methods: {
       onSubmitForm(e) {
@@ -43,6 +51,13 @@
         }
       }
     }
+  })
+</script>
+<script>
+  const app = new Vue({
+    el: '#root',
+    data: {},
+    methods: {}
   })
 </script>
 
