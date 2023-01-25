@@ -11,12 +11,14 @@
 
 <body>
   <div id='root'>
-    <word-relay></word-relay>
-    <word-relay></word-relay>
-    <word-relay></word-relay>
+    <!-- html에서는 kebab case -->
+    <word-relay start-word="이원굉"></word-relay>
+    <word-relay start-word="굉굉"></word-relay>
+    <word-relay start-word="우럭따"></word-relay>
   </div>
 </body>
 <script>
+  // 전역 컴포넌트
   Vue.component('word-relay', {
     template: `
       <div>
@@ -28,11 +30,13 @@
         <div>{{result}}</div>
       </div>
     `,
+    // JS에서는 camel case
+    props: ['startWord'],
     data() {
       return {
-        prev: '이원굉',
+        prev: this.startWord,
         current: '',
-        result: ''
+        result: '!?'
       }
     },
     methods: {
