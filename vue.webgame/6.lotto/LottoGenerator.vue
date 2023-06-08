@@ -3,14 +3,14 @@
     <div>numbers</div>
     <div id="result">
       <!--
-        <lotto-ball v-for="ball in winBalls" :key="i" number="5"></lotto-ball>
       -->
+      <lotto-ball v-for="ball in winBalls" :key="ball" v-bind:number="ball"></lotto-ball>
     </div>
     <div>bonus</div>
     <!--
-      <lotto-ball v-if="bonus" />
     -->
-    <button v-if="redo">one more!</button>
+    <lotto-ball v-if="bonus" :number="bonus" />
+    <button v-if="redo" @click="onClickRedo">one more!</button>
   </div>
 </template>
 <script>
@@ -30,20 +30,52 @@ const getWinNumbers = () => {
   console.groupEnd("getWinNumbers");
 
   return [...winNumbers, bonusNumber];
-}
-
+};
+const timeouts = [];
 export default {
-  components: { 'lotto-ball' : LottoBall },
+  components: { LottoBall },
   data() {
     return {
-      winNumbers = getWinNumbers(),
+      winNumbers: getWinNumbers(),
       winBalls: [],
       bonus: null,
       redo: false,
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    onClickRedo() {
+      this.winNumbers = getWinNumbers();
+      this.winBalls = [];
+      this.bonus = null;
+      this.redo = false;
+      this.showBalls();
+    },
+    showBalls() {
+      for (let i = 0; i < this.winNumbers.length - 1; i++) {
+        timeouts[i] = setTimeout(() => {
+          this.winBalls.push(this.winNumbers[i]);
+        }, (i + 1) * 1000);
+      }
+      timeouts[6] = setTimeout(() => {
+        this.bonus = this.winNumbers[6];
+        this.redo = true;
+      }, 7000);
+    },
+  },
+  mounted() {
+    console.group("mounted");
+    this.showBalls();
+    console.groupEnd("mounted");
+  },
+  beforeDestroy() {
+    console.group("before destroy");
+    timeouts.forEach((t) => {
+      console.log("t", t);
+      clearTimeout(t);
+    });
+    console.groupEnd("before destroy");
+  },
   beforeCreate() {
     console.group("before create");
     console.groupEnd("before create");
@@ -56,10 +88,6 @@ export default {
     console.group("before mount");
     console.groupEnd("before mount");
   },
-  mounted() {
-    console.group("mounted");
-    console.groupEnd("mounted");
-  },
   beforeUpdate() {
     console.group("before update");
     console.groupEnd("before update");
@@ -67,10 +95,6 @@ export default {
   updated() {
     console.group("updated");
     console.groupEnd("updated");
-  },
-  beforeDestroy() {
-    console.group("before destroy");
-    console.groupEnd("before destroy");
   },
   destroyed() {
     console.group("destroyed");
