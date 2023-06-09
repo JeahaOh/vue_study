@@ -55,12 +55,12 @@ export default {
       for (let i = 0; i < this.winNumbers.length - 1; i++) {
         timeouts[i] = setTimeout(() => {
           this.winBalls.push(this.winNumbers[i]);
-        }, (i + 1) * 1000);
+        }, (i + 1) * 300);
       }
       timeouts[6] = setTimeout(() => {
         this.bonus = this.winNumbers[6];
         this.redo = true;
-      }, 7000);
+      }, 1500);
     },
   },
   mounted() {
@@ -75,6 +75,26 @@ export default {
       clearTimeout(t);
     });
     console.groupEnd("before destroy");
+  },
+  watch: {
+    // 사용 지양
+    // winBalls(val, oldValue) {
+    //   console.log(val, oldValue);
+    //   if (val.length === 0) {
+    //     this.showBalls();
+    //   }
+    // },
+    // bonus(value, oldValue) {
+    //   if (value === null) {
+    //     this.showBalls();
+    //   }
+    // },
+    // redo(value, oldValue) {
+    //   console.log(value, oldValue);
+    //   if (value === false) {
+    //     this.showBalls();
+    //   }
+    // },
   },
   beforeCreate() {
     console.group("before create");
