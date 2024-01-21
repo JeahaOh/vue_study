@@ -4,24 +4,39 @@
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
+    <CommonModal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">warnnig!</h3>
+      <div slot="body">nothing can not be insert!</div>
+    </CommonModal>
   </div>
 </template>
 <script>
+import CommonModal from "./common/CommonModal.vue";
+
 export default {
-  data: function () {
+  data() {
     return {
       newTodoItem: "",
+      showModal: false,
     };
   },
   methods: {
-    addTodo: function () {
-      console.log(this.newTodoItem);
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
+    addTodo() {
+      const text = this.newTodoItem.trim();
+      if (text === "") {
+        this.showModal = !this.showModal;
+        return;
+      }
+
+      this.$store.commit("addOneItem", text);
       this.clearInput();
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoItem = "";
     },
+  },
+  components: {
+    CommonModal,
   },
 };
 </script>
