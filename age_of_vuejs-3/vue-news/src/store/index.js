@@ -8,7 +8,7 @@ const store = new Vuex.Store({
     ask: [],
     jobs: [],
     user: {},
-    item: [],
+    item: {},
   },
   mutations,
   getters: {
