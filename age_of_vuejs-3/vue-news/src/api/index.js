@@ -22,6 +22,7 @@ function fetchJobsList() {
 }
 
 function fetchUserInfo(id) {
+  console.log('id', id);
   return axios.get(`${config.baseUrl}${config.user}${id}.json`);
 }
 

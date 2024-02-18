@@ -18,6 +18,9 @@ const store = new Vuex.Store({
     fetchedItem(state) {
       return state.item;
     },
+    fetchedUser(state) {
+      return state.user;
+    },
   },
   actions,
 });

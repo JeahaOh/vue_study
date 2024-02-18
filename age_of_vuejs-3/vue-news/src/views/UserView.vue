@@ -2,29 +2,28 @@
   <div>
     <p>
       name :
-      {{ userInfo.id }}
+      {{ fetchedUser.id }}
     </p>
     <p>
       karma :
-      {{ userInfo.karma }}
+      {{ fetchedUser.karma }}
     </p>
     <p>
       created :
-      {{ userInfo.created }}
+      {{ fetchedUser.created }}
     </p>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  computed: {
-    userInfo() {
-      this.$store.state.user;
-    },
-  },
   created() {
-    const userName = this.$route.params.id;
-    this.$store.dispatch('FETCH_USER', userName);
+    const userId = this.$route.params.id;
+    this.$store.dispatch('FETCH_USER', userId);
+  },
+  computed: {
+    ...mapGetters(['fetchedUser']),
   },
 };
 </script>

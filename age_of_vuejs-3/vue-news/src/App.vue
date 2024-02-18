@@ -2,9 +2,8 @@
   <div>
     <!-- app -->
     <tool-bar> </tool-bar>
-    <transition name="page">
-      <router-view> </router-view>
-    </transition>
+    <router-view> </router-view>
+    <!-- <transition name="page"></transition> -->
   </div>
 </template>
 
@@ -29,7 +28,7 @@ a:hover {
   color: #42b883;
   text-decoration: underline;
 }
-a.router-link-active {
+a.router-link-exact-active {
   text-decoration: underline;
 }
 

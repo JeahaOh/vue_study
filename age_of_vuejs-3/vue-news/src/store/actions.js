@@ -29,6 +29,7 @@ export default {
       .catch((err) => console.error(err));
   },
   FETCH_USER({ commit }, name) {
+    console.log('name', name);
     fetchUserInfo(name)
       .then(({ data }) => {
         commit('SET_USER', data);
