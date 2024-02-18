@@ -2,8 +2,9 @@
   <div>
     <!-- app -->
     <tool-bar> </tool-bar>
-
-    <router-view> </router-view>
+    <transition name="page">
+      <router-view> </router-view>
+    </transition>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
 <style>
 body {
   margin: 0;
+  padding: 0;
 }
 
 a {
@@ -29,5 +31,14 @@ a:hover {
 }
 a.router-link-active {
   text-decoration: underline;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

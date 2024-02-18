@@ -2,6 +2,7 @@ import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
 import NewsView from '../views/NewsView.vue';
 import UserView from '../views/UserView.vue';
+import ItemView from '../views/ItemView.vue';
 
 export default [
   {
@@ -21,7 +22,11 @@ export default [
     component: NewsView,
   },
   {
-    path: '/user',
+    path: '/user/:id',
     component: UserView,
+  },
+  {
+    path: '/item/:id',
+    component: ItemView,
   },
 ];

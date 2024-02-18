@@ -12,17 +12,21 @@ const config = {
 function fetchNewsList() {
   return axios.get(`${config.baseUrl}${config.news}`);
 }
+
 function fetchAskList() {
   return axios.get(`${config.baseUrl}${config.ask}`);
 }
+
 function fetchJobsList() {
   return axios.get(`${config.baseUrl}${config.jobs}`);
 }
-function fetchUser(id) {
+
+function fetchUserInfo(id) {
   return axios.get(`${config.baseUrl}${config.user}${id}.json`);
 }
-function fetchItem(id) {
+
+function fetchCommentItem(id) {
   return axios.get(`${config.baseUrl}${config.item}${id}.json`);
 }
 
-export { fetchNewsList, fetchAskList, fetchJobsList, fetchUser, fetchItem };
+export { fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo, fetchCommentItem };
