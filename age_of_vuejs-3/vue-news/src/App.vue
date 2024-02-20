@@ -2,10 +2,10 @@
   <div>
     <!-- app -->
     <tool-bar> </tool-bar>
-    <spinner-vue :loading="loadingStatus"></spinner-vue>
     <transition name="page">
       <router-view />
     </transition>
+    <spinner-vue :loading="loadingStatus"></spinner-vue>
   </div>
 </template>
 
@@ -23,14 +23,23 @@ export default {
   },
   methods: {
     startSpinner() {
+      console.group('startSpinner');
       this.loadingStatus = true;
+      console.groupEnd('startSpinner', this.loadingStatus);
     },
     endSpinner() {
+      console.group('endSpinner');
       this.loadingStatus = false;
+      console.groupEnd('endSpinner', this.loadingStatus);
     },
   },
   created() {
-    bus.$on('start:spnner', this.startSpinner);
+    bus.$on('start:spinner', this.startSpinner);
+    bus.$on('end:spinner', this.endSpinner);
+  },
+  beforeDestroy() {
+    bus.$off('start:spinner', this.startSpinner);
+    bus.$off('end:spinner', this.endSpinner);
   },
 };
 </script>
