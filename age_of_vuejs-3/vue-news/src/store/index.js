@@ -8,8 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     // news: [],
-    // ask: [],
-    // jobs: [],
+    ask: [],
+    jobs: [],
     user: {},
     item: {},
     list: [],

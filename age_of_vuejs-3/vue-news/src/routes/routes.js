@@ -14,14 +14,14 @@ export default [
   {
     name: 'ask',
     path: '/ask',
-    // component: AskView,
-    component: createListView('AskView'),
+    component: AskView,
+    // component: createListView('AskView'),
   },
   {
     name: 'jobs',
     path: '/jobs',
-    // component: JobsView,
-    component: createListView('JobsView'),
+    component: JobsView,
+    // component: createListView('JobsView'),
   },
   {
     name: 'news',

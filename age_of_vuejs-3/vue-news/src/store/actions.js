@@ -1,5 +1,5 @@
 import {
-  fetchNewsList,
+  // fetchNewsList,
   fetchAskList,
   fetchJobsList,
   fetchList,
@@ -16,22 +16,22 @@ export default {
   //     })
   //     .catch((err) => console.error(err));
   // },
-  // FETCH_JOBS({ commit }) {
-  //   return fetchJobsList()
-  //     .then(({ data }) => {
-  //       commit('SET_JOBS', data);
-  //       return data;
-  //     })
-  //     .catch((err) => console.error(err));
-  // },
-  // FETCH_ASK({ commit }) {
-  //   return fetchAskList()
-  //     .then(({ data }) => {
-  //       commit('SET_ASK', data);
-  //       return data;
-  //     })
-  //     .catch((err) => console.error(err));
-  // },
+  FETCH_JOBS({ commit }) {
+    return fetchJobsList()
+      .then(({ data }) => {
+        commit('SET_JOBS', data);
+        return data;
+      })
+      .catch((err) => console.error(err));
+  },
+  FETCH_ASK({ commit }) {
+    return fetchAskList()
+      .then(({ data }) => {
+        commit('SET_ASK', data);
+        return data;
+      })
+      .catch((err) => console.error(err));
+  },
   FETCH_LIST({ commit }, pageName) {
     return fetchList(pageName)
       .then(({ data }) => commit('SET_LIST', data))
