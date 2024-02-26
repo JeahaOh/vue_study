@@ -9,28 +9,53 @@ const config = {
   item: 'item/',
 };
 
-function fetchNewsList() {
-  return axios.get(`${config.baseUrl}${config.news}`);
+async function fetchNewsList() {
+  try {
+    return await axios.get(`${config.baseUrl}${config.news}`);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function fetchAskList() {
-  return axios.get(`${config.baseUrl}${config.ask}`);
+async function fetchAskList() {
+  try {
+    return await axios.get(`${config.baseUrl}${config.ask}`);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function fetchJobsList() {
-  return axios.get(`${config.baseUrl}${config.jobs}`);
-}
-function fetchList(pageName) {
-  return axios.get(`${config.baseUrl}${pageName}/1.json`);
+async function fetchJobsList() {
+  try {
+    return await axios.get(`${config.baseUrl}${config.jobs}`);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function fetchUserInfo(id) {
+async function fetchList(pageName) {
+  try {
+    return await axios.get(`${config.baseUrl}${pageName}/1.json`);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function fetchUserInfo(id) {
   console.log('id', id);
-  return axios.get(`${config.baseUrl}${config.user}${id}.json`);
+  try {
+    return await axios.get(`${config.baseUrl}${config.user}${id}.json`);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function fetchCommentItem(id) {
-  return axios.get(`${config.baseUrl}${config.item}${id}.json`);
+async function fetchCommentItem(id) {
+  try {
+    return await axios.get(`${config.baseUrl}${config.item}${id}.json`);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export { fetchNewsList, fetchAskList, fetchJobsList, fetchList, fetchUserInfo, fetchCommentItem };

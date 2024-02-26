@@ -40,29 +40,10 @@
 
 <script>
 export default {
-  // created() {
-  //   let actionName;
-
-  //   switch (this.$route.name) {
-  //     case 'news':
-  //       actionName = 'FETCH_NEWS';
-  //       break;
-  //     case 'ask':
-  //       actionName = 'FETCH_ASK';
-  //       break;
-  //     case 'jobs':
-  //       actionName = 'FETCH_JOBS';
-  //       break;
-  //     default:
-  //   }
-
-  //   this.$store.dispatch(actionName);
-  // },
   computed: {
     listItems() {
       switch (this.$route.name) {
         case 'news':
-          // return this.$store.state.news;
           return this.$store.state.list;
         case 'ask':
           return this.$store.state.ask;
@@ -70,7 +51,6 @@ export default {
           return this.$store.state.jobs;
         default:
       }
-      // return this.$store.state.list;
     },
   },
 };
