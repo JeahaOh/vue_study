@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TodoHeader></TodoHeader>
+    <TodoHeader :appTitle="title"></TodoHeader>
     <TodoInput @add="addTodoItem"></TodoInput>
     <TodoList :todoItems="todoItems" @remove="removeTodoItem"></TodoList>
   </div>
@@ -13,6 +13,11 @@ import TodoList from './components/TodoList.vue';
 
 export default {
   components: { TodoHeader, TodoInput, TodoList },
+  data() {
+    return {
+      title: 'TODO',
+    };
+  },
   setup() {
     const todoItems = ref([]);
 
