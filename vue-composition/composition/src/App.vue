@@ -5,24 +5,12 @@
   </div>
 </template>
 <script>
-import { ref } from 'vue';
-export default {
-  // data() {
-  //   return {
-  //     message: 'hell',
-  //   };
-  // },
-  // methods: {
-  //   changeMessage() {
-  //     this.message = 'hell no';
-  //   },
-  // },
-  setup() {
-    const message = ref('hell');
+import useMessage from './hooks/useMessage.js';
 
-    const changeMessage = () => {
-      message.value = 'hell no';
-    };
+export default {
+  setup() {
+    const { message, changeMessage } = useMessage();
+
     return { message, changeMessage };
   },
 };
