@@ -1,15 +1,19 @@
 <template>
-  <div id="main">
+  <div class="app">
     <AppHeader></AppHeader>
-    <router-view />
+    <div class="app-contents">
+      <router-view />
+    </div>
+    <ToastPopup></ToastPopup>
   </div>
 </template>
 
 <script>
 import AppHeader from '@/components/common/AppHeader.vue';
+import ToastPopup from '@/components/common/ToastPopup.vue';
 
 export default {
-  components: { AppHeader },
+  components: { AppHeader, ToastPopup },
   created() {
     console.log('hi');
   },
@@ -17,11 +21,6 @@ export default {
 </script>
 
 <style>
-#main {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@import url(./css/reset.css);
+@import url(./css/common.css);
 </style>

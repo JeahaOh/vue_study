@@ -5,63 +5,68 @@
         <div>
           <label for="username">username : </label>
           <input id="username" type="text" v-model="username" />
-          <p class="validation-text">
-            <span class="warning" v-if="!isUsernameValid && username">
-              Please enter an email address
-            </span>
-          </p>
         </div>
         <div>
           <label for="password">password : </label>
           <input id="password" type="text" v-model="password" />
+        </div>
+        <div>
+          <label for="nickname">nickname : </label>
+          <input id="nickname" type="text" v-model="nickname" />
         </div>
         <button
           type="submit"
           class="btn"
           :disabled="!isUsernameValid || !password"
         >
-          Log In
+          Sign Up
         </button>
       </form>
-      <p>{{ logMessage }}</p>
+      <p class="log">{{ logMessage }}</p>
     </div>
   </div>
 </template>
 <script>
+import { registerUser } from '@/api/auth.js';
 import { validateEmail } from '@/utils/validation.js';
 
 export default {
+  components: {},
   data() {
     return {
       username: '',
       password: '',
+      nickname: '',
       logMessage: '',
     };
   },
+  setup() {},
+  created() {},
+  mounted() {},
+  unmounted() {},
   methods: {
     async submitForm() {
       console.group('submitForm');
 
-      try {
-        const userData = {
-          username: this.username,
-          password: this.password,
-        };
+      const userData = {
+        username: this.username,
+        password: this.password,
+        nickname: this.nickname,
+      };
 
-        await this.$store.dispatch('LOGIN', userData);
-        this.$router.push('/main');
-      } catch (error) {
-        console.error('error', error);
-        console.error('response', error.response);
-        this.logMessage = `${error.response.data}`;
-      } finally {
-        this.initForm();
-        console.groupEnd('submitForm');
-      }
+      const { data } = await registerUser(userData);
+      console.log('res.data.username : ', data.username);
+
+      this.logMessage = `Sign Up -> ${data.username}`;
+
+      this.initForm();
+
+      console.groupEnd('submitForm');
     },
     initForm() {
       this.username = '';
       this.password = '';
+      this.nickname = '';
     },
   },
   computed: {
@@ -69,13 +74,5 @@ export default {
       return validateEmail(this.username);
     },
   },
-  created() {
-    this.$store.dispatch('LOGOUT');
-  },
 };
 </script>
-<style>
-.btn {
-  color: white;
-}
-</style>
